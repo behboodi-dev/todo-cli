@@ -35,7 +35,21 @@ def add_task(task):
 
     tasks=load_tasks()
     tasks.append(task)
-    save_tasks(tasks)             
+    save_tasks(tasks)   
+
+def list_tasks():
+
+    """Print all tasks, numbered starting from 1."""
+
+    tasks=load_tasks()
+
+    if not tasks:
+        print('tasks not found.')
+
+    i = 1
+    for task in tasks:
+        print(f"{i}. {task}")
+        i += 1    
 
 
 def main():
@@ -50,11 +64,13 @@ def main():
 
     add_parser.add_argument('task',help="The task description")
 
+    subparsers.add_parser('list',help="List all tasks")
+
     args=parser.parse_args()
 
-    if args.command=='add':
+    if args.command =='add':
         add_task(args.task)
         print(f'task added:{args.task}')
+    elif args.command =='list':
+        list_tasks()    
 
-if __name__ == "__main__":
-    main()        
