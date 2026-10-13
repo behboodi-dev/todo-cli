@@ -51,7 +51,20 @@ def list_tasks():
         print(f"{i}. {task}")
         i += 1    
 
+def delete_task(task_number):
 
+    """Delete the task at the given position. Does nothing if the index is out of range."""
+
+    tasks=load_tasks()
+
+    if task_number < 1 or task_number > len(tasks):
+        print("Invalid task number.")
+        return
+
+    deleted_task = tasks.pop(task_number - 1)
+    save_tasks(tasks)
+
+    print(f"Task deleted: {deleted_task}")
 def main():
 
     """Parse command-line arguments and dispatch to the right function."""
@@ -66,11 +79,25 @@ def main():
 
     subparsers.add_parser('list',help="List all tasks")
 
+    delete_parser = subparsers.add_parser(
+    "delete",
+    help="Delete a task by its number"
+)
+
+    delete_parser.add_argument("task_number",type=int,
+                               help="The number of the task to delete"
+)
+
     args=parser.parse_args()
 
     if args.command =='add':
         add_task(args.task)
         print(f'task added:{args.task}')
     elif args.command =='list':
-        list_tasks()    
+        list_tasks()   
+    elif args.command == "delete":
+        delete_task(args.task_number)     
 
+
+if __name__ == "__main__":
+    main()
