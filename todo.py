@@ -1,6 +1,7 @@
 """A simple command-line to-do list application."""
 
 import os
+import argparse
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,4 +29,32 @@ def save_tasks(tasks):
         for task in tasks:
              f.write(f"{task}\n")
 
+def add_task(task):
 
+    """Add a new task to the list and save it."""
+
+    tasks=load_tasks()
+    tasks.append(task)
+    save_tasks(tasks)             
+
+
+def main():
+
+    """Parse command-line arguments and dispatch to the right function."""
+
+    parser=argparse.ArgumentParser(description='A simple command-line To-Do app')
+
+    subparsers=parser.add_subparsers(dest='command')
+
+    add_parser=subparsers.add_parser('add')
+
+    add_parser.add_argument('task',help="The task description")
+
+    args=parser.parse_args()
+
+    if args.command=='add':
+        add_task(args.task)
+        print(f'task added:{args.task}')
+
+if __name__ == "__main__":
+    main()        
