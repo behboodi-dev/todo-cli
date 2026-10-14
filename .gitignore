@@ -5,3 +5,6 @@ env/
 
 # Environment variables
 .env
+
+# Task data
+tasks.txt
