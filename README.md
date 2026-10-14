@@ -12,3 +12,25 @@ them in a plain text file so they persist between runs.
 - List all tasks (numbered)
 - Delete a task by its number
 
+## Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/behboodi-dev/todo-cli.git
+cd todo
+
+# 2. Create a virtual environment
+python -m venv .venv
+
+# 3. Activate it
+# Windows (PowerShell):
+.venv\Scripts\Activate.ps1
+# macOS / Linux:
+source .venv/bin/activate
+
+# 4. Install dependencies
+pip install -r requirements.txt
+
+# 5. Create your environment file
+cp .env.example .env
+# On Windows: copy .env.example .env
