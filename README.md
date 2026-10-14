@@ -34,3 +34,12 @@ pip install -r requirements.txt
 # 5. Create your environment file
 cp .env.example .env
 # On Windows: copy .env.example .env
+
+# Add a task
+python todo.py add "study python"
+
+# List all tasks
+python todo.py list
+
+# Delete a task
+python todo.py delete 1
